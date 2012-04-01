@@ -8,7 +8,6 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require twitter/bootstrap
  *= require_self
  *= require_tree .
 */
@@ -24,13 +23,34 @@ overflow: hidden;
 position: fixed;
 background: rgba(250,250,250,0.6);
 }
-#responses .response p {
+#responses .response {
 border-radius: 7px;
 padding: 10px;
 margin: 10px;
 background: rgba(0,0,0,0.6);
 color: #eee;
 }
+#responses .response p {
+margin:0;
+padding:0;
+}
+.username {
+margin-bottom: 0.5em;
+font-weight:bold;
+text-align:right;
+}
 .hidden {
 opacity: 0;
 }
+#comment {
+position: absolute;
+right:0;
+bottom: 0;
+z-index:10;
+padding: 10px;
+}
+#comment textarea {
+clear:both;
+height: 2em;
+}
+
