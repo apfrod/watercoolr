@@ -7,6 +7,8 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 
+gem 'less-rails-bootstrap'
+
 gem 'soundcloud'
 # Gems used only for assets and not required
 # in production environments by default.
