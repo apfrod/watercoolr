@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @medium.title %>
+</p>
+
+<p>
+  <b>Soundcloud:</b>
+  <%= @medium.soundcloud_id %>
+</p>
+
+<p>
+  <b>Originally broadcast at:</b>
+  <%= @medium.originally_broadcast_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_medium_path(@medium) %> |
+<%= link_to 'Back', media_path %>

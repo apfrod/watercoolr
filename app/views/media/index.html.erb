@@ -1,0 +1,27 @@
+<h1>Listing media</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Soundcloud</th>
+    <th>Originally broadcast at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @media.each do |medium| %>
+  <tr>
+    <td><%= medium.title %></td>
+    <td><%= medium.soundcloud_id %></td>
+    <td><%= medium.originally_broadcast_at %></td>
+    <td><%= link_to 'Show', medium %></td>
+    <td><%= link_to 'Edit', edit_medium_path(medium) %></td>
+    <td><%= link_to 'Destroy', medium, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Medium', new_medium_path %>
