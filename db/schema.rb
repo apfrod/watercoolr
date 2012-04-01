@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401125745) do
+ActiveRecord::Schema.define(:version => 20120401155106) do
 
   create_table "media", :force => true do |t|
     t.string   "title"
@@ -20,5 +20,18 @@ ActiveRecord::Schema.define(:version => 20120401125745) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
+
+  create_table "responses", :force => true do |t|
+    t.integer  "medium_id"
+    t.string   "username"
+    t.text     "body"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.float    "offset"
+  end
+
+  add_index "responses", ["medium_id"], :name => "index_responses_on_medium_id"
 
 end

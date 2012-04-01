@@ -1,5 +1,8 @@
+$(function() {
+	$("#soundcloud_media").setupSoundcloudPlayer();
+})
 
-window.onload = function(){
+$.fn.setupSoundcloudPlayer = function() {
 
   var host2widgetBaseUrl = {
     "wt.soundcloud.dev" : "wt.soundcloud.dev/",
@@ -23,7 +26,7 @@ window.onload = function(){
     consoleBox.value = value +"\n" + consoleBox.value;
   }
 
-  var widgetUrl = "http://api.soundcloud.com/tracks/" + document.getElementById('soundcloud_id').innerHTML;
+  var widgetUrl = "http://api.soundcloud.com/tracks/" + $(this).data("track_id");
 
   consoleBox.value = "Loading...";
 

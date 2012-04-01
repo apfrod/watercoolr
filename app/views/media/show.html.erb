@@ -1,21 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @medium.title %>
-</p>
+<%= content_tag :div, :id => :soundcloud_media, :"data-originally_broadcast_at" => @medium.originally_broadcast_at.to_f, :"data-track_id" => @medium.soundcloud_id do %>
+<h1><%= @medium.title %></h1>
+<% end %>
 
-<p>
-  <b>Soundcloud:</b>
-  <div id='soundcloud_id'><%= @medium.soundcloud_id %></div>
-</p>
-
-<p>
-  <b>Originally broadcast at:</b>
-  <%= @medium.originally_broadcast_at %>
-</p>
-
-<iframe id="soundcloud_iframe" class="iframe" width="100%" height="0" scrolling="no" frameborder="no">// src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/users/1539950/favorites">
+<iframe id="soundcloud_iframe" class="iframe" width="100%" height="0" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/<%= @medium.soundcloud_id %>">
 </iframe>
 
 <ul class="widgetOptions">

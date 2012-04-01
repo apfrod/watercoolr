@@ -1,5 +1,7 @@
 Watercoolr::Application.routes.draw do
-  resources :media
+  resources :media do
+    resources :responses
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
