@@ -26,6 +26,15 @@ window.onload = function(){
   var widgetUrl = "http://api.soundcloud.com/tracks/" + document.getElementById('soundcloud_id').innerHTML;
 
   consoleBox.value = "Loading...";
+  
+  $('.actionButtons').hide();
+  $('.getterButtons').hide();
+  $('.urlInput').hide();
+  $('.widgetLinks').hide();
+  $('.widgetOptions').hide();
+  $('.urlOptions').hide();
+  $('.reload').hide();
+  $('.console').hide();
 
   var iframe = document.getElementById('soundcloud_iframe');
   iframe.src = location.protocol + "//" + 'w.soundcloud.com/player/' /*host2widgetBaseUrl[location.host]*/ + "?url=" + widgetUrl;
@@ -33,6 +42,19 @@ window.onload = function(){
 
     var widget = SC.Widget(iframe);
     widget.bind(SC.Widget.Events.READY, function() {
+      var startTime = new Date();
+      var elem = document.getElementById('originally_broadcast_at');
+      if (elem)
+      {
+        var time = parseInt(elem.innerHTML, 10);
+        if (time)
+        {
+            var ms = 1325376000000;//Date.parse(time);
+            startTime = new Date(ms);
+        }
+      }
+       
+      
       var actionButtons = document.querySelectorAll('.actionButtons button');
       forEach.call(actionButtons, function(button) {
         addEvent(button, 'click', function(e) {
@@ -54,7 +76,23 @@ window.onload = function(){
           });
         });
       });
-
+      
+      function progressFn(progress) {
+        var abs_time = (new Date(Math.floor(startTime.getTime() + progress.currentPosition)).getTime());
+        var update_time = window.update_time;
+        if (update_time)
+        {
+            update_time(abs_time);
+        }
+        else
+        {
+            updateConsole("Abs time: " + abs_time);
+        }
+      }
+      
+      widget.bind(SC.Widget.Events.PLAY, progressFn);
+      widget.bind(SC.Widget.Events.PLAY_PROGRESS, progressFn);
+      
       var eventKey, eventName;
       for (eventKey in SC.Widget.Events) {
         (function(eventName, eventKey) {
