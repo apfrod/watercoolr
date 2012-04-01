@@ -44,16 +44,15 @@ $.fn.setupSoundcloudPlayer = function() {
   iframe.onload = function() {
 
     var widget = SC.Widget(iframe);
-    widget.bind(SC.Widget.Events.READY, function() {
+widget.bind(SC.Widget.Events.READY, function() {
       var startTime = new Date();
-      var elem = document.getElementById('originally_broadcast_at');
-      if (elem)
+      var elem = $('#soundcloud_media');
+      if (elem.length)
       {
-        var time = parseInt(elem.innerHTML, 10);
+        var time = parseInt(elem.attr('data-originally_broadcast_at'), 10);
         if (time)
         {
-            var ms = 1325376000000;//Date.parse(time);
-            startTime = new Date(ms);
+            startTime = new Date(time*1000);
         }
       }
        
