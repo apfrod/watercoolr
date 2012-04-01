@@ -1,5 +1,5 @@
 
-(function(){
+window.onload = function(){
 
   var host2widgetBaseUrl = {
     "wt.soundcloud.dev" : "wt.soundcloud.dev/",
@@ -23,12 +23,12 @@
     consoleBox.value = value +"\n" + consoleBox.value;
   }
 
-  var widgetUrl = "http://api.soundcloud.com/users/1539950/favorites";
+  var widgetUrl = "http://api.soundcloud.com/tracks/" + document.getElementById('soundcloud_id').innerHTML;
 
   consoleBox.value = "Loading...";
 
-  var iframe = document.querySelector('.iframe');
-  iframe.src = location.protocol + "//" + host2widgetBaseUrl[location.host] + "?url=" + widgetUrl;
+  var iframe = document.getElementById('soundcloud_iframe');
+  iframe.src = location.protocol + "//" + 'w.soundcloud.com/player/' /*host2widgetBaseUrl[location.host]*/ + "?url=" + widgetUrl;
   iframe.onload = function() {
 
     var widget = SC.Widget(iframe);
@@ -74,14 +74,15 @@
         });
       });
 
-      var reloadButton = document.querySelector('.reload');
-      addEvent(reloadButton, 'click', function() {
+      var reloadFn = function() {
         var widgetOptions = getWidgetOptions();
         widgetOptions.callback = function(){
           updateConsole('Widget is reloaded.')
         };
-        widget.load(widgetUrlInput.value, widgetOptions);
-      });
+        widget.load(widgetUrl, widgetOptions);
+      };
+      var reloadButton = document.querySelector('.reload');
+      addEvent(reloadButton, 'click', reloadFn);
 
       function getWidgetOptions() {
         var optionInputs = document.querySelectorAll('.widgetOptions input');
@@ -91,7 +92,10 @@
         });
         return widgetOptions;
       }
+      
+      iframe.height = 200;
+      reloadFn();
     });
   };
 
-}());
+};

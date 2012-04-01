@@ -7,7 +7,7 @@
 
 <p>
   <b>Soundcloud:</b>
-  <%= @medium.soundcloud_id %>
+  <div id='soundcloud_id'><%= @medium.soundcloud_id %></div>
 </p>
 
 <p>
@@ -15,8 +15,26 @@
   <%= @medium.originally_broadcast_at %>
 </p>
 
-<iframe class="iframe" width="100%" height="465" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/users/1539950/favorites">
-      </iframe>
+<iframe id="soundcloud_iframe" class="iframe" width="100%" height="0" scrolling="no" frameborder="no">// src="http://w.soundcloud.com/player/?url=http://api.soundcloud.com/users/1539950/favorites">
+</iframe>
+
+<ul class="widgetOptions">
+  <li><input type="checkbox" id="auto_play"><label for="auto_play">auto_play</label></li>
+  <li><input type="checkbox" id="buying"><label for="buying">buying</label></li>
+  <li><input type="checkbox" id="liking"><label for="liking">liking</label></li>
+  <li><input type="checkbox" id="download"><label for="download">download</label></li>
+  <li><input type="checkbox" id="sharing"><label for="sharing">sharing</label></li>
+  <li><input type="checkbox" checked="checked" id="show_artwork"><label for="show_artwork">show_artwork</label></li>
+  <li><input type="checkbox" id="show_comments"><label for="show_comments">show_comments</label></li>
+  <li><input type="checkbox" id="show_playcount"><label for="show_playcount">show_playcount</label></li>
+  <li><input type="checkbox" id="show_user"><label for="show_user">show_user</label></li>
+  <li><input type="text" value="0" id="start_track"><label for="start_track">start_track</label></li>
+</ul>
+<div class="inputContainer">
+  <input class="urlInput" placeholder="Enter SoundCloud URL of the track/set/user" type="text">
+  <button class="reload">Reload widget</button>
+</div>
+<textarea class="console" wrap="off"></textarea>
 
 <%= link_to 'Edit', edit_medium_path(@medium) %> |
 <%= link_to 'Back', media_path %>
