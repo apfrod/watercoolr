@@ -11,3 +11,22 @@
  *= require_self
  *= require_tree .
 */
+
+#responses {
+width:200px;
+height:100%;
+position:absolute;
+right:0;
+top:0;
+overflow: hidden;
+position: fixed;
+background: rgba(250,250,250,0.6);
+}
+#responses .response p {
+border-radius: 7px;
+padding: 10px;
+margin: 10px;
+background: rgba(0,0,0,0.6);
+color: #eee;
+}
+
