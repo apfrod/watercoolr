@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
     if params[:since]
       @responses = @medium.responses.where("created_at > ", Time.at(params[:since].to_f))
     else
-      @responses = @medium.responses.all
+      @responses = @medium.responses.order("offset").all
     end
 
     respond_to do |wants|

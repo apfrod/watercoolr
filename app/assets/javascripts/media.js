@@ -82,7 +82,7 @@ widget.bind(SC.Widget.Events.READY, function() {
       function progressFn(progress) {
         var abs_time = (new Date(Math.floor(startTime.getTime() + progress.currentPosition)).getTime());
         var update_time = window.update_time;
-		console.log(abs_time)
+		// console.log(abs_time)
         if (update_time)
         {
             update_time(abs_time);
